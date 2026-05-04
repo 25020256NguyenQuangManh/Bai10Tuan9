@@ -1,0 +1,13 @@
+Link Repository: https://github.com/25020256NguyenQuangManh/Bai10Tuan9
+
+1. Lỗi ở mục Build with Maven, dòng 14 (https://github.com/25020256NguyenQuangManh/Bai10Tuan9/actions/runs/25320205304/job/74227076295):
+Error:  The goal you specified requires a project to execute but there is no POM in this directory (/home/runner/work/Bai10Tuan9/Bai10Tuan9). Please verify you invoked Maven from the correct directory. -> [Help 1]
+Giải thích: GitHub Actions cung cấp một máy ảo hoàn toàn trống. Dù code nằm trên GitHub, nhưng nếu không có bước checkout code về máy ảo này, lệnh mvn package sẽ chạy ở một thư mục rỗng và báo lỗi không tìm thấy file pom.xml
+
+2. Lỗi ở mục Build with Maven, các dòng 642, 643 và 644 (https://github.com/25020256NguyenQuangManh/Bai10Tuan9/actions/runs/25320402166/job/74227720314):
+Error:  Failed to execute goal on project shipping-app: Could not resolve dependencies for project com.lab:shipping-app:jar:1.0-SNAPSHOT
+Error:  dependency: ch.qos.logback:logback-classic:jar:9.9.9 (compile)
+Error:  	Could not find artifact ch.qos.logback:logback-classic:jar:9.9.9 in central (https://repo.maven.apache.org/maven2)
+Giải thích: Phiên bản 9.9.9 của logback classic không tồn tại trên kho lưu trữ chính thức của Maven. Khi hệ thống CI/CD chạy lệnh build, Maven sẽ cố gắng tìm tải thư viện này về nhưng thất bại, dẫn đến tiến trình bị ngắt và báo đỏ.
+
+3. Build thành công (https://github.com/25020256NguyenQuangManh/Bai10Tuan9/actions/runs/25320656755)
